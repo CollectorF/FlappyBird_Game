@@ -1,1 +1,1 @@
-This is a repository for Unity developement study.
+My first project on Unity - Flappy Bird game.
