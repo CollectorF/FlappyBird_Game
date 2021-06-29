@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,26 +18,30 @@ public class PlayerController : MonoBehaviour
     private AnimationCurve rotationCurve;
 
     private Rigidbody2D playerRigidboby;
+    private Animator playerAnimator;
     private float playerRotationCurrent;
     private float timeSinceLastJump;
     private bool isAlive;
     private Vector3 startPosition;
     private Quaternion startAngle;
-    internal delegate void EventHandler();
-    internal event EventHandler OnResetGame;
+    internal event Action OnResetGame;
 
 
     private void Start()
     {
         playerRigidboby = GetComponent<Rigidbody2D>();
+        playerAnimator = GetComponent<Animator>();
         startPosition = playerRigidboby.position;
         startAngle = playerRigidboby.transform.rotation;
         Reset();
+        playerRigidboby.simulated = false;
     }
 
     internal void OnCollisionEnter2D(Collision2D collision)
     {
         OnResetGame?.Invoke();
+        playerAnimator.enabled = false;
+        playerRigidboby.simulated = false;
     }
 
     private void Update()
@@ -59,6 +64,8 @@ public class PlayerController : MonoBehaviour
         timeSinceLastJump = 0;
         playerRotationCurrent = transform.rotation.z;
         isAlive = true;
+        playerAnimator.enabled = true;
+        playerRigidboby.simulated = true;
     }
 }
 

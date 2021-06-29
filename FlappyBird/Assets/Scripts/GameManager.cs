@@ -7,6 +7,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private PlayerController playerController;
     [SerializeField]
+    private UIManager uiManager;
+    [SerializeField]
+    private PipeTrigger pipeTrigger;
+    [SerializeField]
     private LevelManager levelManager;
     [SerializeField]
     private GameObject Level;
@@ -23,16 +27,16 @@ public class GameManager : MonoBehaviour
 
     private Vector3 generatedPoint;
     private int score = 0;
+    private int bestScore = 0;
     private bool isGameRunning = false;
     private float timeRemaning;
     private Coroutine pipeSpawn;
 
-
     private void Start()
     {
-        isGameRunning = true;
+        uiManager.OnTap += StartGame;
         playerController.OnResetGame += StopGame;
-        pipeSpawn =  StartCoroutine(SpawnPipes());
+
     }
 
     private void Update()
@@ -40,21 +44,30 @@ public class GameManager : MonoBehaviour
         timeRemaning -= Time.deltaTime;
     }
 
+    private void StartGame()
+    {
+        isGameRunning = true;
+        playerController.Reset();
+        pipeSpawn = StartCoroutine(SpawnPipes());
+    }
+
     private void StopGame()
     {
         isGameRunning = false;
         Debug.Log("Game over!");
-        StopCoroutine(levelManager.levelRoll);
+        levelManager.StopCoroutine(levelManager.levelRoll);
         StopCoroutine(pipeSpawn);
+        Debug.Log("Score: " + score);
     }
 
-    private void StartGame()
+    private int ScoreCount()
     {
-
+        return score++;
     }
 
     private IEnumerator SpawnPipes()
     {
+        var width = Camera.main.orthographicSize * 2;
         while (true)
         {
             if (timeRemaning <= 0)
@@ -62,6 +75,8 @@ public class GameManager : MonoBehaviour
                 generatedPoint = new Vector3(spawnPosX, Random.Range(minPipeHeight, maxPipeHeight), 0);
                 GameObject newPipe = Instantiate(pipePrefab, generatedPoint, Quaternion.identity);
                 newPipe.transform.SetParent(Level.transform);
+                PipeTrigger newPipeScript = newPipe.GetComponent<PipeTrigger>();
+                newPipeScript.OnTrigger += ScoreCount;
             }
             yield return new WaitForSeconds(timeRemaning = spawnTime);
         }
