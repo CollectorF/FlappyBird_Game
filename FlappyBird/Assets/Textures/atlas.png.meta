@@ -28,13 +28,13 @@ TextureImporter:
     second: ButtonPlay
   - first:
       213: 3210994475073176143
-    second: Medal_Steel
+    second: Medal_Platinum
   - first:
       213: -6596105612730252187
     second: Medal_Bronze
   - first:
       213: -7690861461720601230
-    second: Medal_Silver
+    second: Medal_Platinum
   - first:
       213: -6684475192863260856
     second: Medal_Gold
@@ -319,7 +319,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Medal_Steel
+      name: Medal_Silver
       rect:
         serializedVersion: 2
         x: 224
@@ -361,7 +361,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Medal_Silver
+      name: Medal_Platinum
       rect:
         serializedVersion: 2
         x: 242
@@ -369,7 +369,7 @@ TextureImporter:
         width: 44
         height: 44
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -390,7 +390,7 @@ TextureImporter:
         width: 44
         height: 44
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

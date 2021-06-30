@@ -24,7 +24,8 @@ public class PlayerController : MonoBehaviour
     private bool isAlive;
     private Vector3 startPosition;
     private Quaternion startAngle;
-    internal event Action OnResetGame;
+    internal event Action OnStopGame;
+    private float currentJumpPower;
 
 
     private void Start()
@@ -33,31 +34,44 @@ public class PlayerController : MonoBehaviour
         playerAnimator = GetComponent<Animator>();
         startPosition = playerRigidboby.position;
         startAngle = playerRigidboby.transform.rotation;
-        Reset();
+        currentJumpPower = jumpPower;
+        ResetGame();
         playerRigidboby.simulated = false;
+        isAlive = false;
     }
 
     internal void OnCollisionEnter2D(Collision2D collision)
     {
-        OnResetGame?.Invoke();
-        playerAnimator.enabled = false;
-        playerRigidboby.simulated = false;
+        while (isAlive)
+        {
+            OnStopGame?.Invoke();
+            playerAnimator.enabled = false;
+            isAlive = false;
+        }
+
     }
 
     private void Update()
     {
-        timeSinceLastJump += Time.deltaTime;
-        playerRotationCurrent = Mathf.Lerp(playerRotationJump, playerRotationFall, rotationCurve.Evaluate(timeSinceLastJump / rotationTime));
-        transform.rotation = Quaternion.Euler(0, 0, playerRotationCurrent);
+        if (isAlive)
+        {
+            timeSinceLastJump += Time.deltaTime;
+            playerRotationCurrent = Mathf.Lerp(playerRotationJump, playerRotationFall, rotationCurve.Evaluate(timeSinceLastJump / rotationTime));
+            transform.rotation = Quaternion.Euler(0, 0, playerRotationCurrent);
+        }
+        else
+        {
+            currentJumpPower = 0;
+        }
     }
 
     public void Jump()
     {
-        playerRigidboby.velocity = Vector2.up * jumpPower;
+        playerRigidboby.velocity = Vector2.up * currentJumpPower;
         playerRotationCurrent = playerRotationJump;
         timeSinceLastJump = 0;
     }
-    public void Reset()
+    public void ResetGame()
     {
         playerRigidboby.position = startPosition;
         playerRigidboby.transform.rotation = startAngle;
@@ -65,6 +79,7 @@ public class PlayerController : MonoBehaviour
         playerRotationCurrent = transform.rotation.z;
         isAlive = true;
         playerAnimator.enabled = true;
+        currentJumpPower = jumpPower;
         playerRigidboby.simulated = true;
     }
 }

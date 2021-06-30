@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,19 +25,30 @@ public class GameManager : MonoBehaviour
     private float spawnPosX = 12f;
     [SerializeField]
     private GameObject pipePrefab;
+    [SerializeField]
+    [Min(0)]
+    private int bronzeMedalScore;
+    [SerializeField]
+    [Min(0)]
+    private int silverMedalScore;
+    [SerializeField]
+    [Min(0)]
+    private int goldMedalScore;
+    [SerializeField]
+    [Min(0)]
+    private int platinumMedalScore;
 
     private Vector3 generatedPoint;
     private int score = 0;
     private int bestScore = 0;
-    private bool isGameRunning = false;
     private float timeRemaning;
     private Coroutine pipeSpawn;
 
     private void Start()
     {
         uiManager.OnTap += StartGame;
-        playerController.OnResetGame += StopGame;
-
+        uiManager.OnRestart += StartGame;
+        playerController.OnStopGame += StopGame;
     }
 
     private void Update()
@@ -46,23 +58,28 @@ public class GameManager : MonoBehaviour
 
     private void StartGame()
     {
-        isGameRunning = true;
-        playerController.Reset();
+        score = 0;
+        playerController.ResetGame();
         pipeSpawn = StartCoroutine(SpawnPipes());
+        uiManager.OnTap -= StartGame;
     }
 
     private void StopGame()
     {
-        isGameRunning = false;
-        Debug.Log("Game over!");
         levelManager.StopCoroutine(levelManager.levelRoll);
         StopCoroutine(pipeSpawn);
-        Debug.Log("Score: " + score);
+        if (score > bestScore)
+        {
+            bestScore = score;
+        }
+        uiManager.OnGameEnd(score, bestScore, bronzeMedalScore, silverMedalScore, goldMedalScore, platinumMedalScore);
     }
 
     private int ScoreCount()
     {
-        return score++;
+        score++;
+        uiManager.UpdateScore(score);
+        return score;
     }
 
     private IEnumerator SpawnPipes()
@@ -72,7 +89,7 @@ public class GameManager : MonoBehaviour
         {
             if (timeRemaning <= 0)
             {
-                generatedPoint = new Vector3(spawnPosX, Random.Range(minPipeHeight, maxPipeHeight), 0);
+                generatedPoint = new Vector3(spawnPosX, UnityEngine.Random.Range(minPipeHeight, maxPipeHeight), 0);
                 GameObject newPipe = Instantiate(pipePrefab, generatedPoint, Quaternion.identity);
                 newPipe.transform.SetParent(Level.transform);
                 PipeTrigger newPipeScript = newPipe.GetComponent<PipeTrigger>();
