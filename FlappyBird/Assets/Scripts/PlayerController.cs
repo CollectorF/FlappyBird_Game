@@ -48,7 +48,6 @@ public class PlayerController : MonoBehaviour
             playerAnimator.enabled = false;
             isAlive = false;
         }
-
     }
 
     private void Update()
@@ -73,14 +72,14 @@ public class PlayerController : MonoBehaviour
     }
     public void ResetGame()
     {
+        isAlive = true;
+        playerRigidboby.simulated = true;
+        playerAnimator.enabled = true;
         playerRigidboby.position = startPosition;
         playerRigidboby.transform.rotation = startAngle;
         timeSinceLastJump = 0;
         playerRotationCurrent = transform.rotation.z;
-        isAlive = true;
-        playerAnimator.enabled = true;
         currentJumpPower = jumpPower;
-        playerRigidboby.simulated = true;
     }
 }
 

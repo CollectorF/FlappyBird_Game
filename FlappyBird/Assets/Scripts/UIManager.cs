@@ -44,12 +44,6 @@ public class UIManager : MonoBehaviour
         bestScoreTMP = bestScore.GetComponent<TMPro.TMP_Text>();
     }
 
-
-    private void Update()
-    {
-        
-    }
-
     public void OnTapToPlay()
     {
         if (gameresultUI.activeSelf == false)
@@ -92,6 +86,8 @@ public class UIManager : MonoBehaviour
     public void OnRestartGame()
     {
         OnRestart?.Invoke();
-        Debug.Log("Invoke OnRestart");
+        gameresultUI.SetActive(false);
+        gameplayUI.SetActive(true);
+        UpdateScore(0);
     }
 }

@@ -484,17 +484,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
-  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_PointAction: {fileID: 1054132383583890850, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_MoveAction: {fileID: 3710738434707379630, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_SubmitAction: {fileID: 2064916234097673511, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_CancelAction: {fileID: -1967631576421560919, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_LeftClickAction: {fileID: 8056856818456041789, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_MiddleClickAction: {fileID: 3279352641294131588, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_RightClickAction: {fileID: 3837173908680883260, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_ScrollWheelAction: {fileID: 4502412055082496612, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_TrackedDevicePositionAction: {fileID: 4754684134866288074, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_TrackedDeviceOrientationAction: {fileID: 1025543830046995696, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: 6a4958b0023015847a422937987e13e8, type: 3}
+  m_PointAction: {fileID: 875085394750153036, guid: 6a4958b0023015847a422937987e13e8, type: 3}
+  m_MoveAction: {fileID: 6771081787766081152, guid: 6a4958b0023015847a422937987e13e8, type: 3}
+  m_SubmitAction: {fileID: -1045428471996198384, guid: 6a4958b0023015847a422937987e13e8, type: 3}
+  m_CancelAction: {fileID: -8622378485287176448, guid: 6a4958b0023015847a422937987e13e8, type: 3}
+  m_LeftClickAction: {fileID: 6233626622721284607, guid: 6a4958b0023015847a422937987e13e8, type: 3}
+  m_MiddleClickAction: {fileID: -1323591119231078098, guid: 6a4958b0023015847a422937987e13e8, type: 3}
+  m_RightClickAction: {fileID: -3335530328135208193, guid: 6a4958b0023015847a422937987e13e8, type: 3}
+  m_ScrollWheelAction: {fileID: 6466923982668955632, guid: 6a4958b0023015847a422937987e13e8, type: 3}
+  m_TrackedDevicePositionAction: {fileID: -8567465151600535869, guid: 6a4958b0023015847a422937987e13e8, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 1552599270304745128, guid: 6a4958b0023015847a422937987e13e8, type: 3}
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
 --- !u!114 &581531937
@@ -562,7 +562,7 @@ MonoBehaviour:
   Level: {fileID: 1785388670}
   minPipeHeight: -1
   maxPipeHeight: 0.6
-  spawnTime: 1.4
+  spawnTime: 1.6
   spawnPosX: 6
   pipePrefab: {fileID: 7177993830559249025, guid: 5098578ec76749743b5488ef11010f9b, type: 3}
   bronzeMedalScore: 10
@@ -931,7 +931,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1884008441}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: OnTapToPlay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1054612867
 GameObject:
   m_ObjectHideFlags: 0
@@ -1314,7 +1326,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
@@ -1937,7 +1949,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f238db83ad8d53479d097b02256a76f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.8
+  speed: 1.6
   floor: {fileID: 1054612867}
 --- !u!4 &1785388672
 Transform:
@@ -2285,21 +2297,45 @@ MonoBehaviour:
     m_ActionId: b1543b5a-44dd-4dbe-904d-50c64f9b255c
     m_ActionName: FlappyBird/Jump[/Keyboard/space,/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1884008441}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: OnTapToPlay
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: de95e34e-16cc-4f04-8912-23e91878847f
-    m_ActionName: UI/Click[/Keyboard/space,/Mouse/leftButton]
+      m_Calls: []
+    m_ActionId: 7565d96c-d217-428f-80b7-cebdad90b9a8
+    m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: edda9881-2ed4-40b4-8af4-43a70aca0db6
+    m_ActionName: UI/Submit[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: da9dab6c-df7e-48a9-a27b-1af4a4b13cea
+    m_ActionName: UI/Cancel[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ab68a007-3b28-45f6-94ac-c057f92b85dc
+    m_ActionName: UI/Point[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 87f4ea33-a1ee-4c46-968f-7b9a7f6ffe6d
+    m_ActionName: UI/Click[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b81b1dd5-6097-44a5-90ea-b23cb03c82e6
+    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5cf8997b-2f1e-4aa1-87ef-a3cf0ddd66ed
+    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 69dcb868-3361-463d-8ce1-64c644eb9150
+    m_ActionName: UI/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 306a403b-e8e4-45ec-bd7a-5c4cab1de83c
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 054112a2-ed72-42cb-bf50-0164ec722611
+    m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: FlappyBird

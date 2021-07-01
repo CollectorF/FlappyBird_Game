@@ -10,13 +10,11 @@ public class LevelManager : MonoBehaviour
 	[SerializeField]
 	private GameObject floor;
 
-	internal Coroutine levelRoll;
 	private Vector3 floorStartPosition;
 
 	private void Start()
 	{
 		floorStartPosition = floor.transform.position;
-		levelRoll = StartCoroutine(RollCoroutine());
 	}
 
     internal IEnumerator RollCoroutine()

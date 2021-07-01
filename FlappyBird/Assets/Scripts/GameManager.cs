@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -43,6 +44,8 @@ public class GameManager : MonoBehaviour
     private int bestScore = 0;
     private float timeRemaning;
     private Coroutine pipeSpawn;
+    private Coroutine levelRoll;
+    private List<GameObject> pipes = new List<GameObject>();
 
     private void Start()
     {
@@ -58,15 +61,20 @@ public class GameManager : MonoBehaviour
 
     private void StartGame()
     {
-        score = 0;
         playerController.ResetGame();
         pipeSpawn = StartCoroutine(SpawnPipes());
+        levelRoll = StartCoroutine(levelManager.RollCoroutine());
         uiManager.OnTap -= StartGame;
+        foreach (var pipe in pipes)
+        {
+            Destroy(pipe);
+        }
+        score = 0;
     }
 
     private void StopGame()
     {
-        levelManager.StopCoroutine(levelManager.levelRoll);
+        StopCoroutine(levelRoll);
         StopCoroutine(pipeSpawn);
         if (score > bestScore)
         {
@@ -92,6 +100,7 @@ public class GameManager : MonoBehaviour
                 generatedPoint = new Vector3(spawnPosX, UnityEngine.Random.Range(minPipeHeight, maxPipeHeight), 0);
                 GameObject newPipe = Instantiate(pipePrefab, generatedPoint, Quaternion.identity);
                 newPipe.transform.SetParent(Level.transform);
+                pipes.Add(newPipe);
                 PipeTrigger newPipeScript = newPipe.GetComponent<PipeTrigger>();
                 newPipeScript.OnTrigger += ScoreCount;
             }
