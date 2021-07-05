@@ -21,11 +21,19 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float maxPipeHeight = 1.2f;
     [SerializeField]
-    private float spawnTime = 1f;
-    [SerializeField]
-    private float spawnPosX = 12f;
+    private float pipeSpawnTime = 1.6f;
     [SerializeField]
     private GameObject pipePrefab;
+    [SerializeField]
+    private GameObject bonusPrefab;
+    [SerializeField]
+    private float minBonusHeight = 1f;
+    [SerializeField]
+    private float maxBonusHeight = 0f;
+    [SerializeField]
+    private float bonusSpawnPosX = 20f;
+    [SerializeField]
+    private float bonusSpawnTime = 5f;
     [SerializeField]
     [Min(0)]
     private int bronzeMedalScore;
@@ -42,10 +50,14 @@ public class GameManager : MonoBehaviour
     private Vector3 generatedPoint;
     private int score = 0;
     private int bestScore = 0;
-    private float timeRemaning;
+    private float timeRemaningToSpawnPipes;
+    private float timeRemaningToSpawnBonus;
     private Coroutine pipeSpawn;
+    private Coroutine bonusSpawn;
     private Coroutine levelRoll;
     private List<GameObject> pipes = new List<GameObject>();
+    private GameObject bonus;
+    private List<GameObject> bonuses = new List<GameObject>();
 
     private void Start()
     {
@@ -56,18 +68,24 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        timeRemaning -= Time.deltaTime;
+        timeRemaningToSpawnPipes -= Time.deltaTime;
+        timeRemaningToSpawnBonus -= Time.deltaTime;
     }
 
     private void StartGame()
     {
         playerController.ResetGame();
         pipeSpawn = StartCoroutine(SpawnPipes());
+        //bonusSpawn = StartCoroutine(SpawnBonus());
         levelRoll = StartCoroutine(levelManager.RollCoroutine());
         uiManager.OnTap -= StartGame;
         foreach (var pipe in pipes)
         {
             Destroy(pipe);
+        }
+        foreach (var bonus in bonuses)
+        {
+            Destroy(bonus);
         }
         score = 0;
     }
@@ -76,6 +94,7 @@ public class GameManager : MonoBehaviour
     {
         StopCoroutine(levelRoll);
         StopCoroutine(pipeSpawn);
+        //StopCoroutine(bonusSpawn);
         if (score > bestScore)
         {
             bestScore = score;
@@ -90,21 +109,48 @@ public class GameManager : MonoBehaviour
         return score;
     }
 
+    private void OnBonus(string str)
+    {
+        if (str == "ScoreBonus")
+        {
+            Debug.Log("OnBonus with If invoked");
+            ScoreCount();
+        }
+    }
+
     private IEnumerator SpawnPipes()
     {
         var width = Camera.main.orthographicSize * 2;
         while (true)
         {
-            if (timeRemaning <= 0)
+            if (timeRemaningToSpawnPipes <= 0)
             {
-                generatedPoint = new Vector3(spawnPosX, UnityEngine.Random.Range(minPipeHeight, maxPipeHeight), 0);
+                generatedPoint = new Vector3(width, UnityEngine.Random.Range(minPipeHeight, maxPipeHeight), 0);
                 GameObject newPipe = Instantiate(pipePrefab, generatedPoint, Quaternion.identity);
                 newPipe.transform.SetParent(Level.transform);
                 pipes.Add(newPipe);
                 PipeTrigger newPipeScript = newPipe.GetComponent<PipeTrigger>();
                 newPipeScript.OnTrigger += ScoreCount;
             }
-            yield return new WaitForSeconds(timeRemaning = spawnTime);
+            yield return new WaitForSeconds(timeRemaningToSpawnPipes = pipeSpawnTime);
+        }
+    }
+
+    private IEnumerator SpawnBonus()
+    {
+        while (true)
+        {
+            if (timeRemaningToSpawnBonus <= 0)
+            {
+                generatedPoint = new Vector3(bonusSpawnPosX, UnityEngine.Random.Range(minBonusHeight, maxBonusHeight), 0);
+                bonus = Instantiate(bonusPrefab, generatedPoint, Quaternion.identity);
+                bonus.transform.SetParent(Level.transform);
+                bonus.tag = "ScoreBonus";
+                bonuses.Add(bonus);
+                ScoreBonus bonusScript = bonus.GetComponent<ScoreBonus>();
+                bonusScript.OnBonusTrigger += OnBonus;
+            }
+            yield return new WaitForSeconds(timeRemaningToSpawnBonus = bonusSpawnTime);
         }
     }
 }

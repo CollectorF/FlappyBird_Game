@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3838957810376567499}
   - component: {fileID: 3838957810376567498}
   - component: {fileID: 2067894850721711697}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pipe_lower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 8652441568004218233}
   - component: {fileID: 1094502555245494693}
   - component: {fileID: 2277640194831741596}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pipe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.41391477, y: 0.66512203}
+  m_Offset: {x: 0.56051195, y: 0.66512203}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -167,7 +167,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.23700255, y: 0.9291177}
+  m_Size: {x: 0.19511768, y: 0.9291177}
   m_EdgeRadius: 0
 --- !u!114 &2277640194831741596
 MonoBehaviour:
@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 4720140840588140170}
   - component: {fileID: 4531448542481261084}
   - component: {fileID: 5438862092479530933}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pipe_upper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -277,7 +277,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.000000029802322, y: 0.13145077}
+  m_Offset: {x: 0.000000029802322, y: -3.4785595}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0.21666668}
     pivot: {x: 0.5, y: 0.5}
@@ -288,5 +288,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.50416774, y: 2.929568}
+  m_Size: {x: 0.50416774, y: 10.14959}
   m_EdgeRadius: 0

@@ -562,9 +562,13 @@ MonoBehaviour:
   Level: {fileID: 1785388670}
   minPipeHeight: -1
   maxPipeHeight: 0.6
-  spawnTime: 1.6
-  spawnPosX: 6
+  pipeSpawnTime: 1.6
   pipePrefab: {fileID: 7177993830559249025, guid: 5098578ec76749743b5488ef11010f9b, type: 3}
+  bonusPrefab: {fileID: 8723475701985279353, guid: 9c2f33eb0152dba4180a29fbf5e5bf5f, type: 3}
+  minBonusHeight: 1
+  maxBonusHeight: 0
+  bonusSpawnPosX: 10
+  bonusSpawnTime: 1
   bronzeMedalScore: 10
   silverMedalScore: 20
   goldMedalScore: 30
@@ -1949,7 +1953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f238db83ad8d53479d097b02256a76f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.6
+  speed: 1.5
   floor: {fileID: 1054612867}
 --- !u!4 &1785388672
 Transform:
@@ -2101,14 +2105,16 @@ GameObject:
   m_Component:
   - component: {fileID: 1942662809}
   - component: {fileID: 1942662808}
-  - component: {fileID: 1942662810}
   - component: {fileID: 1942662811}
+  - component: {fileID: 1942662810}
+  - component: {fileID: 1942662815}
   - component: {fileID: 1942662812}
   - component: {fileID: 1942662813}
   - component: {fileID: 1942662814}
+  - component: {fileID: 1942662816}
   m_Layer: 0
-  m_Name: player_1
-  m_TagString: Untagged
+  m_Name: Player_1
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2360,3 +2366,39 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!58 &1942662815
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1942662807}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.14166667
+--- !u!250 &1942662816
+PointEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1942662807}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 8
+  m_ForceMagnitude: 10
+  m_ForceVariation: 0
+  m_DistanceScale: 1
+  m_ForceSource: 0
+  m_ForceTarget: 0
+  m_ForceMode: 0
+  m_Drag: 0
+  m_AngularDrag: 0
