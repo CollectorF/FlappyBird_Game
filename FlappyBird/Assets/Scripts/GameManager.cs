@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float bonusSpawnTime = 5f;
     [SerializeField]
+    private int scoreForPipePass = 1;
+    [SerializeField]
     [Min(0)]
     private int bronzeMedalScore;
     [SerializeField]
@@ -76,7 +78,7 @@ public class GameManager : MonoBehaviour
     {
         playerController.ResetGame();
         pipeSpawn = StartCoroutine(SpawnPipes());
-        //bonusSpawn = StartCoroutine(SpawnBonus());
+        bonusSpawn = StartCoroutine(SpawnBonus());
         levelRoll = StartCoroutine(levelManager.RollCoroutine());
         uiManager.OnTap -= StartGame;
         foreach (var pipe in pipes)
@@ -94,7 +96,7 @@ public class GameManager : MonoBehaviour
     {
         StopCoroutine(levelRoll);
         StopCoroutine(pipeSpawn);
-        //StopCoroutine(bonusSpawn);
+        StopCoroutine(bonusSpawn);
         if (score > bestScore)
         {
             bestScore = score;
@@ -102,19 +104,26 @@ public class GameManager : MonoBehaviour
         uiManager.OnGameEnd(score, bestScore, bronzeMedalScore, silverMedalScore, goldMedalScore, platinumMedalScore);
     }
 
-    private int ScoreCount()
+    private int ScoreCount(int addToScore)
     {
-        score++;
+        // Maybe there are more straight ways to pass a 'scoreForPipePass' int parameter to 'ScoreCount' method,
+        // but I didn't get them...
+
+        if (addToScore == 0)
+        {
+            addToScore = scoreForPipePass;
+        }
+        score += addToScore;
         uiManager.UpdateScore(score);
         return score;
     }
 
-    private void OnBonus(string str)
+    // String parameter is used for the possibility of having more bonuses implementations with other tags to identify them 
+    private void OnBonus(string str, int addToScore)
     {
         if (str == "ScoreBonus")
         {
-            Debug.Log("OnBonus with If invoked");
-            ScoreCount();
+            ScoreCount(addToScore);
         }
     }
 

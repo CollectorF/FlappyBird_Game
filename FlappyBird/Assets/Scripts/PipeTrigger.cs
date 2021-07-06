@@ -5,9 +5,13 @@ using UnityEngine;
 
 public class PipeTrigger : MonoBehaviour
 {
-    internal event Func<int> OnTrigger;
+    internal event Func<int, int> OnTrigger;
+    private int score;
     private void OnTriggerEnter2D(Collider2D other)
     {
-        OnTrigger?.Invoke();
+        if (other.tag == "Player")
+        {
+            OnTrigger?.Invoke(score);
+        }
     }
 }

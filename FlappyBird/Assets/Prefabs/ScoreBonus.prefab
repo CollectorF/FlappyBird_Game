@@ -98,7 +98,7 @@ CircleCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_UsedByEffector: 1
+  m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
@@ -114,11 +114,11 @@ CircleCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.49
+  m_Radius: 0.5
 --- !u!250 &8723475701985279350
 PointEffector2D:
   m_ObjectHideFlags: 0
@@ -127,11 +127,11 @@ PointEffector2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8723475701985279353}
   m_Enabled: 1
-  m_UseColliderMask: 1
+  m_UseColliderMask: 0
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_ForceMagnitude: -10
+  m_ForceMagnitude: 0
   m_ForceVariation: 0
   m_DistanceScale: 1
   m_ForceSource: 0

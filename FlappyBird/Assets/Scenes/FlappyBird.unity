@@ -562,13 +562,14 @@ MonoBehaviour:
   Level: {fileID: 1785388670}
   minPipeHeight: -1
   maxPipeHeight: 0.6
-  pipeSpawnTime: 1.6
+  pipeSpawnTime: 1.7
   pipePrefab: {fileID: 7177993830559249025, guid: 5098578ec76749743b5488ef11010f9b, type: 3}
   bonusPrefab: {fileID: 8723475701985279353, guid: 9c2f33eb0152dba4180a29fbf5e5bf5f, type: 3}
   minBonusHeight: 1
   maxBonusHeight: 0
   bonusSpawnPosX: 10
-  bonusSpawnTime: 1
+  bonusSpawnTime: 5
+  scoreForPipePass: 1
   bronzeMedalScore: 10
   silverMedalScore: 20
   goldMedalScore: 30
@@ -2107,11 +2108,11 @@ GameObject:
   - component: {fileID: 1942662808}
   - component: {fileID: 1942662811}
   - component: {fileID: 1942662810}
-  - component: {fileID: 1942662815}
   - component: {fileID: 1942662812}
   - component: {fileID: 1942662813}
   - component: {fileID: 1942662814}
   - component: {fileID: 1942662816}
+  - component: {fileID: 1942662815}
   m_Layer: 0
   m_Name: Player_1
   m_TagString: Player
@@ -2381,7 +2382,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.14166667
+  m_Radius: 0.15
 --- !u!250 &1942662816
 PointEffector2D:
   m_ObjectHideFlags: 0
@@ -2394,7 +2395,7 @@ PointEffector2D:
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 8
-  m_ForceMagnitude: 10
+  m_ForceMagnitude: -10
   m_ForceVariation: 0
   m_DistanceScale: 1
   m_ForceSource: 0

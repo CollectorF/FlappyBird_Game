@@ -5,13 +5,19 @@ using UnityEngine;
 
 public class ScoreBonus : MonoBehaviour
 {
-    internal event Action<string> OnBonusTrigger;
-    internal void OnTriggerEnter2D(Collider2D other)
+    [SerializeField]
+    private int scoreForBotusCatch = 2;
+
+    private bool bonusIsActivated = false;
+    internal event Action<string, int> OnBonusTrigger;
+
+    internal void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && !bonusIsActivated)
         {
-            var bonusType = other.tag;
-            OnBonusTrigger?.Invoke(bonusType);
+            bonusIsActivated = true;
+            var bonusType = tag;
+            OnBonusTrigger?.Invoke(bonusType, scoreForBotusCatch);
             Destroy(gameObject);
         }
     }
