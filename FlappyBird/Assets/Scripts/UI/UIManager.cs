@@ -70,8 +70,8 @@ public class UIManager : MonoBehaviour
         medal = scoreboardMedals.SetMedal(score);
         playButton.enabled = false;
         Sequence sequence = DOTween.Sequence()
-            .Append(scoreboardAnimation.BoardAnimation())
-            .Append(buttonAnimation.PlayButtonAnimation())
+            .Append(scoreboardAnimation.AnimateScoreboard())
+            .Append(buttonAnimation.AnimateButton())
             .AppendCallback(() => { playButton.enabled = true; });
     }
     public void OnRestartGame()

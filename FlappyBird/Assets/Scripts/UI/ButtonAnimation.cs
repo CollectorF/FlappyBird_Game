@@ -11,7 +11,7 @@ public class ButtonAnimation : MonoBehaviour
 
     public Tween buttonAnimationTween;
 
-    public Tween PlayButtonAnimation()
+    public Tween AnimateButton()
     {
         Color colorOriginal = buttonImage.color;
         Color color = buttonImage.color;

@@ -13,7 +13,7 @@ public class ScoreboardAnimation : MonoBehaviour
 
     public Tween ScoreboardTween;
 
-    public Tween BoardAnimation()
+    public Tween AnimateScoreboard()
     {
         float initialScoreboardY = scoreboardRect.position.y;
         scoreboardRect.position = new Vector2(scoreboardRect.position.x, -1000);

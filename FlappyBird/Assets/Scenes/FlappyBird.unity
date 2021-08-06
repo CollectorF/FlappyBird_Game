@@ -1293,7 +1293,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1177591442
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1419,8 +1419,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 224a741df965f2c43bc0cbd06a310d01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playButtonAppearTime: 0.33
-  playButtonImage: {fileID: 1177591444}
+  buttonAppearTime: 0.33
+  buttonImage: {fileID: 1177591444}
 --- !u!1 &1260469482
 GameObject:
   m_ObjectHideFlags: 0
