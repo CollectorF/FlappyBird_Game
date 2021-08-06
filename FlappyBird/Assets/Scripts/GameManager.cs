@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour
         {
             bestScore = score;
         }
-        uiManager.OnGameEnd(score, bestScore, bronzeMedalScore, silverMedalScore, goldMedalScore, platinumMedalScore);
+        uiManager.OnGameEnd(score, bestScore);
     }
 
     private int ScoreCount(int addToScore)

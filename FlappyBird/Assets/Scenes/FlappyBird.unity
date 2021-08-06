@@ -1286,13 +1286,14 @@ GameObject:
   - component: {fileID: 1177591445}
   - component: {fileID: 1177591444}
   - component: {fileID: 1177591443}
+  - component: {fileID: 1177591446}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1177591442
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1406,6 +1407,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1177591441}
   m_CullTransparentMesh: 1
+--- !u!114 &1177591446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177591441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 224a741df965f2c43bc0cbd06a310d01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playButtonAppearTime: 0.33
+  playButtonImage: {fileID: 1177591444}
 --- !u!1 &1260469482
 GameObject:
   m_ObjectHideFlags: 0
@@ -1721,6 +1736,8 @@ GameObject:
   - component: {fileID: 1655306861}
   - component: {fileID: 1655306863}
   - component: {fileID: 1655306862}
+  - component: {fileID: 1655306864}
+  - component: {fileID: 1655306865}
   m_Layer: 5
   m_Name: Scoreboard
   m_TagString: Untagged
@@ -1791,6 +1808,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1655306860}
   m_CullTransparentMesh: 1
+--- !u!114 &1655306864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655306860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4689fcb1c3152dd44b15a1d1858fb535, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreboardRect: {fileID: 1655306861}
+  scoreboardPopupTime: 0.75
+--- !u!114 &1655306865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655306860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3c0639775ce823449889cb53e6ceb04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  medals:
+  - Type: Bronze
+    Score: 10
+    Medal: {fileID: -6596105612730252187, guid: e239c7bfc74b91a4e87c3d948aaeac64, type: 3}
+  - Type: Silver
+    Score: 20
+    Medal: {fileID: -7406699984813479601, guid: e239c7bfc74b91a4e87c3d948aaeac64, type: 3}
+  - Type: Gold
+    Score: 30
+    Medal: {fileID: -6684475192863260856, guid: e239c7bfc74b91a4e87c3d948aaeac64, type: 3}
+  - Type: Platinum
+    Score: 40
+    Medal: {fileID: 3210994475073176143, guid: e239c7bfc74b91a4e87c3d948aaeac64, type: 3}
+  medal: {fileID: 92776833}
 --- !u!1 &1733112608
 GameObject:
   m_ObjectHideFlags: 0
@@ -2088,14 +2145,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startGameUI: {fileID: 1011614350}
   gameplayUI: {fileID: 1562161888}
-  gameresultUI: {fileID: 410843790}
+  gameResultUI: {fileID: 410843790}
   finalScore: {fileID: 1378283143}
   bestScore: {fileID: 1733112608}
   medal: {fileID: 92776833}
-  bronzeMedal: {fileID: -6596105612730252187, guid: e239c7bfc74b91a4e87c3d948aaeac64, type: 3}
-  silverMedal: {fileID: -7406699984813479601, guid: e239c7bfc74b91a4e87c3d948aaeac64, type: 3}
-  goldMedal: {fileID: -6684475192863260856, guid: e239c7bfc74b91a4e87c3d948aaeac64, type: 3}
-  platinumMedal: {fileID: 3210994475073176143, guid: e239c7bfc74b91a4e87c3d948aaeac64, type: 3}
+  scoreboard: {fileID: 1655306860}
+  playButton: {fileID: 1177591443}
 --- !u!1 &1942662807
 GameObject:
   m_ObjectHideFlags: 0
